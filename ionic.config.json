@@ -1,0 +1,7 @@
+{
+  "name": "exp-livechat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
