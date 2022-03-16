@@ -1,0 +1,128 @@
+ion-header {
+	background-color: white !important;
+  ion-toolbar {
+    --background: white !important;
+		padding: 0 16px;
+    ion-buttons {
+      ion-button {
+        &.with-bg {
+          width: 48px;
+          height: 48px;
+          --background: #F7F7F8;
+          --border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+ion-content {
+	#chat-container {
+		flex-grow: 1;
+		overflow-y: auto;
+		position: relative;
+		padding-top: 20px;
+
+		.message-container {
+			margin-bottom: 0.5em;
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 90%;
+			display: flex;
+			align-items: flex-start;
+			flex-shrink: 0;
+		}
+		
+		.message {
+			background-color: #72945b;
+			padding: 0.9em;
+			border-radius: 1.4em 0 1.4em 1.4em;
+			color: #fff;
+			box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 4px;
+			word-wrap: break-word;
+			max-width: 100%;
+		}
+		
+		.message-container.agent {
+			align-self: flex-start;
+		}
+		
+		.message-container.customer {
+			justify-content: flex-end;
+		}
+		
+		.message-container.agent .message {
+			background-color: #fff;
+			border-radius: 0 1.4em 1.4em 1.4em;
+			color: #5a6976;
+		}
+		
+		.message-container.system {
+			align-self: center;
+		}
+		
+		.message-container.system .message {
+			border-radius: 0;
+			color: #000;
+			box-shadow: none;
+			background-color: transparent;
+		}
+		
+		.agent-avatar {
+			width: 2.4em;
+			height: auto;
+			border-radius: 50%;
+			display: block;
+			margin-right: 0.5em;
+		}
+		
+		.customer-letter-wrapper {
+			width: 2.4em;
+			height: auto;
+			border-radius: 50%;
+			display: block;
+			margin-right: 0.5em;
+		
+			background-color: #e6958d;
+		}
+		
+		.customer-letter {
+			text-align: center;
+			display: block;
+			line-height: 2.4em;
+			color: #fff;
+		}
+	}
+}
+
+ion-footer {
+	ion-button {
+		&.with-bg {
+			width: 48px;
+			height: 48px;
+			--background: #F7F7F8;
+			--border-radius: 50%;
+		}
+		ion-icon {
+			color:black;
+		}
+	}
+	ion-input {
+		width: 100%; 
+		background: #FFFFFF;
+		border: 1px solid rgba(59, 79, 91, 0.1);
+		box-sizing: border-box;border-radius: 8px;
+		font-style: normal;
+		font-weight: normal; 
+		font-size: 18px; 
+		line-height: 21px;
+		color: rgba(59, 79, 91, 0.4);
+		display: flex; 
+		align-items: center;
+		margin-top: 8px;
+		ion-input {
+			height: 50px;
+			--color: #3A4F5C;
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "exp-livechat",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
