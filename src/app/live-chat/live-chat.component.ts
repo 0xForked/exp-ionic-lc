@@ -114,6 +114,14 @@ export class LiveChatComponent implements OnInit {
 
       // this.scrollToBottom();
     });
+
+    sdk.on('connection_restored', () => {});
+    sdk.on('user_is_typing', () => {});
+    sdk.on('user_stopped_typing', () => {});
+    sdk.on('user_joined_chat', () => {});
+    sdk.on('user_left_chat', () => {});
+    sdk.on('connection_lost', () => {});
+    sdk.on('diconnected', (reason) => {});
   }
 
   isAgent = (user) => user.id !== this.customerId;
