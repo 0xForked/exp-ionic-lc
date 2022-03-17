@@ -33,8 +33,8 @@ export class LiveChatComponent implements OnInit {
 
   initLiveChatCustomerSDK() {
     const sdk = CustomerSDK.debug(CustomerSDK.init({
-      licenseId: 13821165,
-      clientId: '535a343e2270e36325f644f939527691',
+      licenseId: 13819833,
+      clientId: '227320b1fb580df078c596e482061cbc',
     }));
 
     this.sdk = sdk;
@@ -70,15 +70,21 @@ export class LiveChatComponent implements OnInit {
         this.chat = chatsSummary[0].id;
         this.active = chatsSummary[0].active;
 
-        this.loadInitialHistory().then(() => {
-          // this.loaderElement.parentElement.removeChild(this.loaderElement);
-          // DOMOperations.showFooter();
-          // if (!this.active) {
-            // DOMOperations.hideChat();
-          // } else {
-            // DOMOperations.showChat();
-          // }
-        });
+        // this.loadInitialHistory().then(() => {
+        //   // this.loaderElement.parentElement.removeChild(this.loaderElement);
+        //   // DOMOperations.showFooter();
+        //   // if (!this.active) {
+        //     // DOMOperations.hideChat();
+        //   // } else {
+        //     // DOMOperations.showChat();
+        //   // }
+        // });
+
+        if (this.active) {
+          this.loadInitialHistory();
+        } else {
+          this.startChat();
+        }
       });
     });
 
@@ -194,21 +200,25 @@ export class LiveChatComponent implements OnInit {
 
     const messageId = `${Math.random() * 1000}`;
 
+    // console.log(this.active);
+    // console.log(this.activating);
     if (this.active) {
-      this.sendMessage(this.chat, messageId, inputData);
-    }else {
-      if (!this.activating) {
-        this.startChat();
-      }
-      this.messages.push({ messageId, inputData });
+      //
     }
+    //else {
+    //   if (!this.activating) {
+    //     this.startChat();
+    //   }
+    // }
 
-    this.messages.push({
-      id: messageId,
-      text: inputData,
-      authorType: 'customer',
-      avatar: null
-    });
+    this.sendMessage(this.chat, messageId, inputData);
+
+    // this.messages.push({
+    //   id: messageId,
+    //   text: inputData,
+    //   authorType: 'customer',
+    //   avatar: null
+    // });
   }
 
   handleChatStart(chat) {
@@ -219,10 +229,14 @@ export class LiveChatComponent implements OnInit {
 
   sendMessage(chat, id, text) {
     const message = { customId: id, text, type: 'message' };
+
     this.sdk.sendEvent({
       chatId: chat,
       event: message
     }).then((confirmedMessage) => confirmedMessage ? this.msg = null : console.log('error'));
+
+    this.messages.push({ id, text, authorType: 'customer' });
+
   }
 
   getMessagesFromThreads(threads) {
@@ -234,6 +248,7 @@ export class LiveChatComponent implements OnInit {
       .filter((event) => event.type === 'message')
       .map((event) => {
         const author = this.users[event.authorId];
+        console.log('chat_data_test', event);
         messageData.push({
           id: event.id,
           text: event.text,
